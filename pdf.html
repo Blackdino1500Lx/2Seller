@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es-CR">
+<head>
+<meta charset="UTF-8">
+<title>Previsualización PDF · Pedido</title>
+<style>
+  body {
+    background: #e2e8f0;
+    font-family: -apple-system, system-ui, 'Inter', sans-serif;
+    margin: 0;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+  }
+  .page {
+    width: 21cm;
+    min-height: 29.7cm;
+    background: white;
+    padding: 1.8cm 1.8cm 2cm;
+    box-shadow: 0 10px 40px rgba(0,0,0,.15);
+    color: #0f172a;
+    font-size: 10.5pt;
+    line-height: 1.45;
+    box-sizing: border-box;
+    position: relative;
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 14px;
+    border-bottom: 2px solid #0f172a;
+    margin-bottom: 20px;
+  }
+  .logo-box {
+    width: 60px; height: 60px;
+    background: #2563eb; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-weight: 800; font-size: 22px;
+    margin-bottom: 8px;
+  }
+  .empresa-nombre { font-size: 15pt; font-weight: 700; margin: 0 0 2px; }
+  .empresa-datos { font-size: 9pt; color: #64748b; line-height: 1.5; }
+  .doc-title {
+    text-align: right;
+  }
+  .doc-title h1 {
+    font-size: 22pt; margin: 0; letter-spacing: -0.5px;
+    color: #0f172a; font-weight: 800;
+  }
+  .doc-title .folio {
+    font-size: 11pt; font-weight: 700; color: #2563eb;
+    margin-top: 2px;
+  }
+  .doc-title .fecha {
+    font-size: 9pt; color: #64748b; margin-top: 6px;
+  }
+  .parties {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+  .party-label {
+    font-size: 8pt;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #64748b;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .party-name { font-weight: 700; font-size: 11pt; margin-bottom: 2px; }
+  .party-detail { font-size: 9pt; color: #475569; line-height: 1.5; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+  }
+  thead th {
+    background: #0f172a;
+    color: white;
+    text-align: left;
+    padding: 8px 10px;
+    font-size: 8.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+  }
+  thead th.right { text-align: right; }
+  tbody td {
+    padding: 9px 10px;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 9.5pt;
+    vertical-align: top;
+  }
+  tbody td.right { text-align: right; font-variant-numeric: tabular-nums; }
+  tbody td.num { color: #64748b; font-size: 8.5pt; }
+  .totals {
+    margin-top: 16px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .totals-table {
+    width: 260px;
+    font-size: 10pt;
+  }
+  .totals-table tr td {
+    padding: 4px 0;
+  }
+  .totals-table tr td:last-child {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    font-weight: 500;
+  }
+  .totals-table tr.grand td {
+    border-top: 2px solid #0f172a;
+    padding-top: 8px;
+    font-size: 13pt;
+    font-weight: 800;
+  }
+  .totals-table tr.grand td:last-child {
+    color: #2563eb;
+  }
+  .notas {
+    margin-top: 28px;
+    padding: 12px 14px;
+    background: #f8fafc;
+    border-left: 3px solid #2563eb;
+    border-radius: 4px;
+    font-size: 9pt;
+    color: #475569;
+  }
+  .notas strong { color: #0f172a; }
+  .footer {
+    position: absolute;
+    bottom: 1.2cm;
+    left: 1.8cm;
+    right: 1.8cm;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 8pt;
+    color: #94a3b8;
+  }
+  .estado-badge {
+    display: inline-block;
+    background: #dbeafe;
+    color: #1d4ed8;
+    font-size: 8pt;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- Header -->
+    <div class="header">
+      <div style="display: flex; gap: 14px;">
+        <div>
+          <div class="logo-box">DD</div>
+        </div>
+        <div>
+          <p class="empresa-nombre">Distribuidora Demo S.A.</p>
+          <p class="empresa-datos">
+            Cédula Jurídica: 3-101-123456<br>
+            San José, Costa Rica<br>
+            Tel: 2222-0000 · info@demo.cr
+          </p>
+        </div>
+      </div>
+      <div class="doc-title">
+        <h1>PEDIDO</h1>
+        <p class="folio">N° P-000343</p>
+        <p class="fecha">
+          12 de septiembre, 2026<br>
+          10:24 a.m.
+        </p>
+        <span class="estado-badge">Confirmado</span>
+      </div>
+    </div>
+
+    <!-- Partes -->
+    <div class="parties">
+      <div>
+        <p class="party-label">Cliente</p>
+        <p class="party-name">Pulpería La Esquina</p>
+        <p class="party-detail">
+          Cédula: 1-2345-6789<br>
+          Barrio Escalante, San José<br>
+          Tel: 2222-1111
+        </p>
+      </div>
+      <div>
+        <p class="party-label">Vendedor</p>
+        <p class="party-name">Carlos Vargas</p>
+        <p class="party-detail">
+          Código: V-001<br>
+          Zona Central<br>
+          vendedor@test.local
+        </p>
+      </div>
+    </div>
+
+    <!-- Tabla de items -->
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 14%;">SKU</th>
+          <th style="width: 42%;">Producto</th>
+          <th class="right" style="width: 10%;">Cant.</th>
+          <th class="right" style="width: 15%;">P. Unit.</th>
+          <th class="right" style="width: 19%;">Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="num">COCA-600</td>
+          <td>Coca-Cola 600ml</td>
+          <td class="right">24</td>
+          <td class="right">₡850.00</td>
+          <td class="right">₡20,400.00</td>
+        </tr>
+        <tr>
+          <td class="num">PAN-BIM</td>
+          <td>Pan Bimbo Blanco</td>
+          <td class="right">10</td>
+          <td class="right">₡1,200.00</td>
+          <td class="right">₡12,000.00</td>
+        </tr>
+        <tr>
+          <td class="num">AGUA-1L</td>
+          <td>Agua Bonafont 1L</td>
+          <td class="right">12</td>
+          <td class="right">₡700.00</td>
+          <td class="right">₡8,400.00</td>
+        </tr>
+        <tr>
+          <td class="num">SABR-CLAS</td>
+          <td>Sabritas Clásicas</td>
+          <td class="right">8</td>
+          <td class="right">₡1,050.00</td>
+          <td class="right">₡8,400.00</td>
+        </tr>
+        <tr>
+          <td class="num">CAFE-250</td>
+          <td>Café 1820 250g</td>
+          <td class="right">3</td>
+          <td class="right">₡2,350.00</td>
+          <td class="right">₡7,050.00</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Totales -->
+    <div class="totals">
+      <table class="totals-table">
+        <tr>
+          <td>Subtotal</td>
+          <td>₡56,250.00</td>
+        </tr>
+        <tr>
+          <td>Impuestos (13%)</td>
+          <td>₡7,312.50</td>
+        </tr>
+        <tr class="grand">
+          <td>Total</td>
+          <td>₡63,562.50</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Notas -->
+    <div class="notas">
+      <strong>Notas:</strong> Entregar en la mañana. Cliente pide factura electrónica a nombre de la pulpería.
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <span>Distribuidora Demo S.A. · 3-101-123456</span>
+      <span>Página 1 de 1</span>
+    </div>
+
+  </div>
+</body>
+</html>
