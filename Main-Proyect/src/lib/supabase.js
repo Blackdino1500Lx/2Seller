@@ -7,7 +7,20 @@ if (!url || !anonKey) {
   throw new Error('Faltan VITE_SUPABASE_URL o VITE_SUPABASE_ANON_KEY en el .env')
 }
 
-export const supabase = createClient(url, anonKey, {
+// Validación de formato para detectar claves cortadas o mal copiadas
+const puntos = (anonKey.match(/\./g) || []).length
+if (puntos !== 2 || anonKey.length < 200) {
+  console.error(
+    '⚠️ La anon key parece incompleta o mal formada.',
+    `Puntos: ${puntos} (esperados 2) · Largo: ${anonKey.length} (esperado > 200)`
+  )
+}
+
+if (url.endsWith('/')) {
+  console.warn('⚠️ VITE_SUPABASE_URL no debe terminar en "/". Quítalo para evitar rutas dobles.')
+}
+
+export const supabase = createClient(url.replace(/\/$/, ''), anonKey, {
   auth: {
     persistSession: true,
     autoRefreshToken: true,
