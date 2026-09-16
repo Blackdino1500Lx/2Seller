@@ -1,8 +1,8 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom'
-import { useAuth } from './hooks/useAuth'
-import LoginPage from './pages/LoginPage'
-import CustomersPage from './pages/CustomersPage'
-import CustomerDetailPage from './pages/CustomerDetailPage'
+import { useAuth } from 'hooks/useAuth'
+import LoginPage from 'pages/LoginPage'
+import CustomersPage from 'pages/CustomersPage'
+import CustomerDetailPage from 'pages/CustomerDetailPage'
 
 function ProtectedRoute({ children }) {
   const { isAuthenticated, loading } = useAuth()
