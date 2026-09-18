@@ -19,6 +19,12 @@ export default {
           800: '#1e40af',
           900: '#1e3a8a'
         }
+      },
+      keyframes: {
+        slideUp: {
+          '0%':   { transform: 'translateY(100%)' },
+          '100%': { transform: 'translateY(0)' }
+        }
       }
     }
   },

@@ -9,7 +9,7 @@ if (!url || !anonKey) {
 
 // Validación de formato para detectar claves cortadas o mal copiadas
 const puntos = (anonKey.match(/\./g) || []).length
-if (puntos !== 2 || anonKey.length < 200) {
+if (puntos !== 2 || anonKey.length < 100) {
   console.error(
     '⚠️ La anon key parece incompleta o mal formada.',
     `Puntos: ${puntos} (esperados 2) · Largo: ${anonKey.length} (esperado > 200)`

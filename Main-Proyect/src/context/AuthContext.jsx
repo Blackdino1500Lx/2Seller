@@ -9,7 +9,6 @@ export function AuthProvider({ children }) {
   const [profile, setProfile] = useState(null)
   const [loading, setLoading] = useState(true)
 
-  // Cargar el perfil extendido (public.users) del usuario autenticado
   async function loadProfile(userId) {
     if (!userId) {
       setProfile(null)
@@ -32,7 +31,6 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     let mounted = true
 
-    // Sesión inicial
     supabase.auth.getSession().then(async ({ data: { session } }) => {
       if (!mounted) return
       setSession(session)
@@ -41,7 +39,6 @@ export function AuthProvider({ children }) {
       setLoading(false)
     })
 
-    // Escuchar cambios
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (_event, session) => {
         if (!mounted) return
